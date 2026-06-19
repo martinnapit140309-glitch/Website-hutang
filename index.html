@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Koperasi Sejahtera Bersama</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  /* HERO */
+  .page-wrap { min-height: 100vh; display: flex; flex-direction: column; padding-top: 80px; }
+  .hero {
+    flex: 1; display: flex; align-items: center;
+    padding: 80px 48px; position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; top: -200px; right: -200px;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(201,168,76,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: ''; position: absolute; bottom: -100px; left: 200px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(76,201,192,0.05) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-content { max-width: 620px; position: relative; z-index: 1; }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--accent-teal); margin-bottom: 24px;
+  }
+  .hero-eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--accent-teal); }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 5vw, 4.5rem);
+    line-height: 1.08; font-weight: 900; margin-bottom: 24px;
+  }
+  .hero-title em { font-style: normal; color: var(--accent-gold); }
+  .hero-sub {
+    color: var(--gray-light); font-size: 1.05rem;
+    line-height: 1.7; margin-bottom: 40px; max-width: 480px;
+  }
+  .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+
+  /* STATS */
+  .stats-strip { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--border); }
+  .stat-item { padding: 36px 48px; border-right: 1px solid var(--border); }
+  .stat-item:last-child { border-right: none; }
+  .stat-num { font-family: 'Playfair Display', serif; font-size: 2.6rem; font-weight: 700; color: var(--accent-gold); line-height: 1; margin-bottom: 6px; }
+  .stat-label { color: var(--gray-light); font-size: 0.85rem; letter-spacing: 0.5px; }
+
+  /* LAYANAN */
+  .layanan-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+  .layanan-card { background: var(--gray-dark); padding: 40px 36px; transition: background 0.2s; }
+  .layanan-card:hover { background: var(--gray-mid); }
+  .layanan-icon { width: 48px; height: 48px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin-bottom: 24px; }
+  .layanan-card:nth-child(1) .layanan-icon { background: rgba(201,168,76,0.12); }
+  .layanan-card:nth-child(2) .layanan-icon { background: rgba(76,201,192,0.12); }
+  .layanan-card:nth-child(3) .layanan-icon { background: rgba(224,112,112,0.12); }
+  .layanan-name { font-weight: 600; font-size: 1.05rem; margin-bottom: 12px; }
+  .layanan-desc { color: var(--gray-light); font-size: 0.9rem; line-height: 1.65; }
+
+  /* KALKULATOR */
+  .kalkulator-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+  .kalkulator-left p { color: var(--gray-light); line-height: 1.7; font-size: 0.95rem; margin-top: 16px; }
+  .kalkulator-card { background: var(--gray-dark); border: 1px solid var(--border); border-radius: 8px; padding: 40px; }
+  .result-box {
+    background: rgba(201,168,76,0.06); border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 6px; padding: 24px; margin-top: 28px; display: none;
+  }
+  .result-box.show { display: block; }
+  .result-label { font-size: 0.78rem; color: var(--gray-light); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+  .result-value { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--accent-gold); font-weight: 700; margin-bottom: 4px; }
+  .result-note { font-size: 0.8rem; color: var(--gray-light); }
+
+  @media (max-width: 768px) {
+    .hero { padding: 60px 24px; }
+    .stats-strip { grid-template-columns: 1fr; }
+    .stat-item { border-right: none; border-bottom: 1px solid var(--border); padding: 28px 24px; }
+    .layanan-grid { grid-template-columns: 1fr; gap: 2px; }
+    .kalkulator-wrap { grid-template-columns: 1fr; gap: 40px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">KSB <span>Koperasi</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Beranda</a></li>
+    <li><a href="index.html#layanan">Layanan</a></li>
+    <li><a href="index.html#kalkulator">Kalkulator</a></li>
+    <li><a href="dashboard.html">Dashboard</a></li>
+  </ul>
+  <a class="nav-cta" href="daftar.html">Daftar Sekarang</a>
+</nav>
+
+<div class="page-wrap">
+  <div class="hero">
+    <div class="hero-content">
+      <div class="hero-eyebrow">Koperasi Simpan Pinjam</div>
+      <h1 class="hero-title">Bersama Kita<br><em>Lebih Sejahtera</em></h1>
+      <p class="hero-sub">Koperasi Sejahtera Bersama hadir untuk membantu kebutuhan finansial Anda dengan bunga rendah, proses mudah, dan layanan yang transparan.</p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="daftar.html">Jadi Anggota</a>
+        <a class="btn-outline" href="#layanan">Lihat Layanan</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="stats-strip">
+    <div class="stat-item">
+      <div class="stat-num">4.200+</div>
+      <div class="stat-label">Anggota Aktif</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">Rp 18M</div>
+      <div class="stat-label">Total Dana Tersalurkan</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">12 Thn</div>
+      <div class="stat-label">Pengalaman Beroperasi</div>
+    </div>
+  </div>
+
+  <div class="section-block" id="layanan">
+    <div class="section-header">
+      <div class="section-eyebrow">Apa yang Kami Tawarkan</div>
+      <h2 class="section-title">Layanan Unggulan</h2>
+    </div>
+    <div class="layanan-grid">
+      <div class="layanan-card">
+        <div class="layanan-icon">💰</div>
+        <div class="layanan-name">Simpanan</div>
+        <div class="layanan-desc">Tabung uang Anda dengan aman dan dapatkan bagi hasil kompetitif setiap bulannya. Tersedia simpanan sukarela dan wajib.</div>
+      </div>
+      <div class="layanan-card">
+        <div class="layanan-icon">📋</div>
+        <div class="layanan-name">Pinjaman</div>
+        <div class="layanan-desc">Pinjaman dengan bunga ringan mulai 1% per bulan. Proses cepat 3–5 hari kerja dengan persyaratan yang mudah dipenuhi.</div>
+      </div>
+      <div class="layanan-card">
+        <div class="layanan-icon">📈</div>
+        <div class="layanan-name">Investasi</div>
+        <div class="layanan-desc">Ikut berkembang bersama koperasi melalui program investasi anggota dengan imbal hasil transparan dan terpercaya.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-block" id="kalkulator">
+    <div class="kalkulator-wrap">
+      <div class="kalkulator-left">
+        <div class="section-eyebrow">Hitung Kebutuhan Anda</div>
+        <h2 class="section-title">Kalkulator<br>Pinjaman</h2>
+        <p>Simulasikan cicilan pinjaman Anda sebelum mengajukan. Bunga dihitung secara flat dan transparan.</p>
+      </div>
+      <div class="kalkulator-card">
+        <div class="form-group">
+          <label class="form-label">Jumlah Pinjaman (Rp)</label>
+          <input class="form-input" type="number" id="jumlah" placeholder="Contoh: 5000000" oninput="hitung()">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Tenor</label>
+          <select class="form-select" id="tenor" onchange="hitung()">
+            <option value="">— Pilih Tenor —</option>
+            <option value="3">3 Bulan</option>
+            <option value="6">6 Bulan</option>
+            <option value="12">12 Bulan</option>
+            <option value="24">24 Bulan</option>
+            <option value="36">36 Bulan</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Tujuan Pinjaman</label>
+          <select class="form-select">
+            <option>Modal Usaha</option>
+            <option>Renovasi Rumah</option>
+            <option>Pendidikan</option>
+            <option>Kebutuhan Darurat</option>
+            <option>Lainnya</option>
+          </select>
+        </div>
+        <div class="result-box" id="result">
+          <div class="result-label">Estimasi Cicilan Per Bulan</div>
+          <div class="result-value" id="cicilan">—</div>
+          <div class="result-note" id="total-bayar">Total yang dikembalikan: —</div>
+        </div>
+        <a class="btn-primary" href="daftar.html" style="width:100%;margin-top:24px;text-align:center">Ajukan Pinjaman</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div>© 2025 Koperasi Sejahtera Bersama. Terdaftar & diawasi OJK.</div>
+    <div style="display:flex;gap:24px">
+      <a href="#">Syarat & Ketentuan</a>
+      <a href="#">Kebijakan Privasi</a>
+      <a href="#">Hubungi Kami</a>
+    </div>
+  </footer>
+</div>
+
+<script>
+  function hitung() {
+    const jumlah = parseFloat(document.getElementById('jumlah').value);
+    const tenor = parseFloat(document.getElementById('tenor').value);
+    const result = document.getElementById('result');
+    if (!jumlah || !tenor) { result.classList.remove('show'); return; }
+    const bunga = 0.01;
+    const totalBayar = jumlah + (jumlah * bunga * tenor);
+    const cicilan = totalBayar / tenor;
+    document.getElementById('cicilan').textContent = 'Rp ' + cicilan.toLocaleString('id-ID', {maximumFractionDigits: 0});
+    document.getElementById('total-bayar').textContent = 'Total yang dikembalikan: Rp ' + totalBayar.toLocaleString('id-ID', {maximumFractionDigits: 0});
+    result.classList.add('show');
+  }
+</script>
+</body>
+</html>
