@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daftar Anggota — Koperasi Sejahtera Bersama</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .page-wrap {
+    padding-top: 80px; min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    padding-bottom: 60px;
+  }
+  .daftar-box {
+    background: var(--gray-dark);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 48px;
+    width: 100%; max-width: 540px;
+    margin: 0 24px;
+  }
+
+  /* Tempat gambar di atas form */
+  .daftar-img {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 32px;
+    display: block;
+    object-fit: cover;
+    max-height: 220px;
+  }
+  /* Jika belum ada gambar, tampilkan placeholder */
+  .daftar-img-placeholder {
+    width: 100%; height: 180px;
+    border-radius: 8px;
+    background: rgba(201,168,76,0.06);
+    border: 2px dashed rgba(201,168,76,0.3);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    margin-bottom: 32px;
+    color: var(--gray-light);
+    font-size: 0.85rem; gap: 8px;
+  }
+  .daftar-img-placeholder span { font-size: 2rem; }
+
+  .daftar-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; font-weight: 700; margin-bottom: 8px;
+  }
+  .daftar-sub { color: var(--gray-light); font-size: 0.9rem; margin-bottom: 36px; }
+  .daftar-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  .success-msg { display: none; text-align: center; padding: 24px 0; }
+  .success-msg.show { display: block; }
+  .success-icon { font-size: 3rem; margin-bottom: 16px; }
+  .success-msg h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 8px; color: var(--accent-gold); }
+  .success-msg p { color: var(--gray-light); font-size: 0.9rem; }
+
+  @media (max-width: 600px) {
+    .daftar-row { grid-template-columns: 1fr; }
+    .daftar-box { padding: 32px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">KSB <span>Koperasi</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Beranda</a></li>
+    <li><a href="index.html#layanan">Layanan</a></li>
+    <li><a href="index.html#kalkulator">Kalkulator</a></li>
+    <li><a href="dashboard.html">Dashboard</a></li>
+  </ul>
+  <a class="nav-cta" href="daftar.html" class="active">Daftar Sekarang</a>
+</nav>
+
+<div class="page-wrap">
+  <div class="daftar-box">
+
+
+    <img src="IMG_20250201_070642-koperasi.jpg" alt="koperasi" class="daftar-img">
+
+    <div id="daftar-form-wrap">
+      <div class="daftar-title">Daftar Anggota</div>
+      <div class="daftar-sub">Bergabunglah dengan ribuan anggota yang telah merasakan manfaatnya.</div>
+
+      <div class="daftar-row">
+        <div class="form-group">
+          <label class="form-label">Nama Depan</label>
+          <input class="form-input" type="text" placeholder="Budi">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Nama Belakang</label>
+          <input class="form-input" type="text" placeholder="Santoso">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email</label>
+        <input class="form-input" type="email" placeholder="email@contoh.com">
+      </div>
+      <div class="form-group">
+        <label class="form-label">No. HP</label>
+        <input class="form-input" type="tel" placeholder="08xx-xxxx-xxxx">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Kota Domisili</label>
+        <input class="form-input" type="text" placeholder="Jakarta">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Tujuan Bergabung</label>
+        <select class="form-select">
+          <option>Simpan Uang & Bagi Hasil</option>
+          <option>Mengajukan Pinjaman</option>
+          <option>Investasi Bersama</option>
+          <option>Semua Layanan</option>
+        </select>
+      </div>
+
+      <button class="btn-primary" style="width:100%;margin-top:8px;text-align:center" onclick="submitDaftar()">Kirim Pendaftaran</button>
+
+      <div style="text-align:center;margin-top:20px;font-size:0.82rem;color:var(--gray-light)">
+        Sudah punya akun? <a href="dashboard.html" style="color:var(--accent-gold);text-decoration:none">Masuk ke Dashboard</a>
+      </div>
+    </div>
+
+    <div class="success-msg" id="success-msg">
+      <div class="success-icon">✅</div>
+      <h3>Pendaftaran Berhasil!</h3>
+      <p>Tim kami akan menghubungi Anda dalam 1–2 hari kerja untuk proses verifikasi.</p>
+      <a class="btn-primary" href="index.html" style="margin-top:28px">Kembali ke Beranda</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  function submitDaftar() {
+    document.getElementById('daftar-form-wrap').style.display = 'none';
+    document.getElementById('success-msg').classList.add('show');
+  }
+</script>
+</body>
+</html>
